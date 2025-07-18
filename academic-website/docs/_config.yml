@@ -59,6 +59,9 @@ collections:
     output: true
     permalink: /teaching/:name/
     sort_by: semester
+  pages:
+    output: true
+    permalink: /:name/
 
 # Default front matter
 defaults:
@@ -92,6 +95,11 @@ defaults:
       type: "teaching"
     values:
       layout: "teaching"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
 
 # Pagination
 paginate: 10
