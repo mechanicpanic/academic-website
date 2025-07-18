@@ -68,7 +68,7 @@ DESIGN_FILES=(
     "_layouts"
     "_includes" 
     "_sass"
-    "assets/css"
+    "assets/css/main.scss"
     ".github/workflows"
     "update-design.sh"
 )
@@ -78,7 +78,9 @@ echo -e "${BLUE}💾 Creating backup...${NC}"
 mkdir -p .design-backup
 for file in "${DESIGN_FILES[@]}"; do
     if [ -e "$file" ]; then
-        cp -r "$file" ".design-backup/" 2>/dev/null || true
+        # Create parent directory in backup if needed
+        mkdir -p ".design-backup/$(dirname "$file")" 2>/dev/null || true
+        cp -r "$file" ".design-backup/$(dirname "$file")/" 2>/dev/null || true
     fi
 done
 
@@ -86,6 +88,8 @@ done
 for file in "${DESIGN_FILES[@]}"; do
     if [ -e "$TEMP_DIR/academic-website-master/$file" ]; then
         echo "  Updating $file"
+        # Create parent directory if needed
+        mkdir -p "$(dirname "$file")" 2>/dev/null || true
         rm -rf "$file" 2>/dev/null || true
         cp -r "$TEMP_DIR/academic-website-master/$file" "$file"
     fi
