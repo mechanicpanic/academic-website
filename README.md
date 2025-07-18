@@ -16,6 +16,28 @@ A professional academic website built with Jekyll and optimized for seamless Obs
 
 **Website URL**: [https://mechanicpanic.github.io/academic-website/](https://mechanicpanic.github.io/academic-website/)
 
+## 🚀 Quick Start (Template Usage)
+
+### 1. Use This Template
+1. Click the green **"Use this template"** button above
+2. Create your new repository (e.g., `your-username/academic-website`)
+3. Clone your new repository locally
+
+### 2. Customize Your Site
+1. **Edit `_config.yml`** - Add your name, email, social links
+2. **Edit `vault/_pages/index.md`** - Write your bio
+3. **Add content** using Obsidian or directly editing markdown files
+4. **See `USER_CONFIG.md`** for detailed customization guide
+
+### 3. Deploy
+1. Push to GitHub
+2. Enable GitHub Pages in repository Settings → Pages
+3. Your site will be live at `https://your-username.github.io/your-repo-name/`
+
+### 4. Keep Design Updated
+- Run `./update-design.sh` to get latest template improvements
+- Your content stays safe, only design files update
+
 ## 🏗️ Architecture
 
 ### Technology Stack
@@ -28,36 +50,44 @@ A professional academic website built with Jekyll and optimized for seamless Obs
 
 ### Project Structure
 ```
-academic-website/
-├── docs/                           # Jekyll site root
-│   ├── _config.yml                # Jekyll configuration
-│   ├── _layouts/                  # Page templates
-│   │   ├── default.html          # Base layout with header/nav/footer
-│   │   ├── publication.html      # Publication detail page
-│   │   ├── experience.html       # Experience detail page
-│   │   ├── talk.html             # Talk detail page
-│   │   └── teaching.html         # Teaching detail page
-│   ├── assets/css/main.scss      # Compiled styles
-│   ├── Gemfile                   # Ruby dependencies
-│   └── vault/                    # Obsidian vault (ALL content)
-│       ├── _pages/               # Website pages
-│       │   ├── index.md         # Homepage
-│       │   ├── cv.md            # Curriculum Vitae
-│       │   ├── publications.md  # Publications listing
-│       │   ├── research.md      # Research overview
-│       │   ├── teaching.md      # Teaching portfolio
-│       │   ├── talks.md         # Talks & presentations
-│       │   └── contact.md       # Contact information
-│       ├── _publications/        # Research papers
-│       ├── _experience/         # Professional experience
-│       ├── _education/          # Academic degrees
-│       ├── _talks/              # Presentations
-│       ├── _teaching/           # Courses taught
-│       └── .obsidian/           # Obsidian configuration
-│           └── templates/       # Content creation templates
-├── .github/workflows/jekyll.yml  # Automated deployment
-└── README.md                     # This file
+your-academic-website/              # Your repository from template
+├── _config.yml                    # 🎯 YOUR SETTINGS - Edit this!
+├── _layouts/                      # 🔧 Template files (updated via script)
+│   ├── default.html              # Base layout with header/nav/footer
+│   ├── publication.html          # Publication detail page
+│   ├── experience.html           # Experience detail page
+│   ├── talk.html                 # Talk detail page
+│   └── teaching.html             # Teaching detail page
+├── assets/css/main.scss          # 🎨 Styles (customize colors here)
+├── Gemfile                       # Ruby dependencies
+├── vault/                        # 📝 YOUR CONTENT - All yours!
+│   ├── _pages/                   # Website pages
+│   │   ├── index.md             # 📝 Homepage - Write your bio here
+│   │   ├── cv.md                # 📝 Your CV page
+│   │   ├── publications.md       # Publications listing page
+│   │   ├── research.md          # Research overview page
+│   │   ├── teaching.md          # Teaching portfolio page
+│   │   ├── talks.md             # Talks & presentations page
+│   │   └── contact.md           # Contact information page
+│   ├── _publications/           # 📝 Add your papers here
+│   ├── _experience/             # 📝 Add your work experience
+│   ├── _education/              # 📝 Add your degrees
+│   ├── _talks/                  # 📝 Add your presentations
+│   ├── _teaching/               # 📝 Add your courses
+│   └── .obsidian/               # Obsidian configuration
+│       └── templates/           # Content creation templates
+├── .github/workflows/jekyll.yml  # 🔧 Automated deployment
+├── update-design.sh             # 🔄 Design update script
+├── USER_CONFIG.md               # 📚 Your customization guide
+└── README.md                    # This documentation
 ```
+
+**Legend:**
+- 📝 **YOUR CONTENT** - Edit freely, these are your files
+- 🎯 **YOUR SETTINGS** - Customize for your site
+- 🎨 **STYLE CUSTOMIZATION** - Safe to modify colors/fonts
+- 🔧 **TEMPLATE FILES** - Updated via `update-design.sh`
+- 🔄 **UPDATE TOOLS** - Keep your design current
 
 ## 🎯 Getting Started
 
@@ -169,30 +199,37 @@ gem env
 
 ### Local Development
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/mechanicpanic/academic-website.git
-   cd academic-website
-   ```
+1. **Use this template to create your repository**
+   - Click "Use this template" button
+   - Clone YOUR new repository locally
 
 2. **Install Jekyll dependencies**
    ```bash
-   cd academic-website/docs
+   cd your-academic-website
    bundle install
    ```
 
-3. **Run local development server**
+3. **Customize your site**
+   ```bash
+   # Edit your basic settings
+   nano _config.yml
+   
+   # Edit your homepage bio
+   nano vault/_pages/index.md
+   ```
+
+4. **Run local development server**
    ```bash
    bundle exec jekyll serve --host 127.0.0.1 --port 4000
    ```
 
-4. **View the site**
+5. **View the site**
    Open [http://127.0.0.1:4000](http://127.0.0.1:4000) in your browser
 
 ### Content Management with Obsidian
 
 1. **Open Obsidian**
-2. **Open vault**: Point to `academic-website/docs/vault/`
+2. **Open vault**: Point to `your-academic-website/vault/`
 3. **Use templates**: Cmd/Ctrl+P → "Templater: Create new note from template"
 4. **Available templates**:
    - Publication.md - Research papers and publications
@@ -201,6 +238,8 @@ gem env
    - Talk.md - Presentations and seminars
    - Teaching.md - Courses and educational activities
    - Page.md - General website pages
+
+**💡 Pro tip**: All your content lives in the `vault/` directory, making it easy to manage everything through Obsidian while keeping design updates separate!
 
 ## 📝 Content Creation Workflow
 

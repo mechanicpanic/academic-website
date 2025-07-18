@@ -1,13 +1,13 @@
 # Jekyll build files
-academic-website/docs/_site/
-academic-website/docs/.sass-cache/
-academic-website/docs/.jekyll-cache/
-academic-website/docs/.jekyll-metadata
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
 
 # Ruby/Bundle files
-academic-website/docs/vendor/
-academic-website/docs/.bundle/
-academic-website/docs/Gemfile.lock
+vendor/
+.bundle/
+Gemfile.lock
 
 # OS generated files
 .DS_Store
@@ -48,5 +48,5 @@ node_modules/
 
 # Academic-specific ignores
 # Uncomment if you don't want to track these
-# academic-website/docs/assets/pdfs/
-# academic-website/docs/assets/images/personal/
+# assets/pdfs/
+# assets/images/personal/
