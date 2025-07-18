@@ -231,6 +231,17 @@ tbody tr:nth-child(even) {
   border-bottom: 1px solid var(--border);
   padding: var(--space-6) 0;
   
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+  
+  .header-text {
+    flex: 1;
+  }
+  
   .title {
     margin: 0;
     font-size: var(--font-size-3xl);
@@ -241,6 +252,39 @@ tbody tr:nth-child(even) {
     font-size: var(--font-size-lg);
     color: var(--secondary-text);
     font-weight: normal;
+  }
+  
+  .header-contact {
+    text-align: right;
+    font-size: var(--font-size-sm);
+    
+    .contact-item {
+      margin-bottom: var(--space-2);
+      
+      a {
+        color: var(--primary-text);
+        font-weight: 500;
+      }
+    }
+    
+    .contact-links {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      
+      a {
+        color: var(--secondary-text);
+        font-size: var(--font-size-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+        
+        &:hover {
+          color: var(--accent-color);
+        }
+      }
+    }
   }
 }
 
@@ -420,6 +464,21 @@ tbody tr:nth-child(even) {
   
   h2 {
     font-size: var(--font-size-2xl);
+  }
+  
+  .header {
+    .header-content {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    
+    .header-contact {
+      text-align: left;
+      
+      .contact-links {
+        justify-content: flex-start;
+      }
+    }
   }
   
   .navigation .nav-list {

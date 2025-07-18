@@ -26,12 +26,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "_teaching/2024-fall-machine-learning.md",
+                "file": "_talks/2024-keynote-ai-conference.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2024-fall-machine-learning"
+              "title": "2024-keynote-ai-conference"
             }
           }
         ],
@@ -184,6 +184,8 @@
   },
   "active": "ce5a6ffa911da9bb",
   "lastOpenFiles": [
+    "_teaching/2024-fall-machine-learning 1.md",
+    "_teaching/2024-fall-machine-learning.md",
     "_pages/teaching.md",
     "_pages/talks.md",
     "_pages/research.md",

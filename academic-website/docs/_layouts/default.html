@@ -43,12 +43,37 @@
 <body>
   <header class="header">
     <div class="container">
-      <h1 class="title">
-        <a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-      </h1>
-      {% if site.subtitle %}
-      <p class="subtitle">{{ site.subtitle | escape }}</p>
-      {% endif %}
+      <div class="header-content">
+        <div class="header-text">
+          <h1 class="title">
+            <a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+          </h1>
+          {% if site.subtitle %}
+          <p class="subtitle">{{ site.subtitle | escape }}</p>
+          {% endif %}
+        </div>
+        <div class="header-contact">
+          {% if site.email %}
+          <div class="contact-item">
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          </div>
+          {% endif %}
+          <div class="contact-links">
+            {% if site.orcid %}
+            <a href="https://orcid.org/{{ site.orcid }}" target="_blank" rel="noopener" title="ORCID">ORCID</a>
+            {% endif %}
+            {% if site.scholar %}
+            <a href="https://scholar.google.com/citations?user={{ site.scholar }}" target="_blank" rel="noopener" title="Google Scholar">Scholar</a>
+            {% endif %}
+            {% if site.github_username %}
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" title="GitHub">GitHub</a>
+            {% endif %}
+            {% if site.linkedin %}
+            <a href="https://linkedin.com/in/{{ site.linkedin }}" target="_blank" rel="noopener" title="LinkedIn">LinkedIn</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
