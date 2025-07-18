@@ -1,0 +1,40 @@
+{
+  "main": {
+    "id": "main-workspace",
+    "type": "split",
+    "children": [
+      {
+        "id": "file-explorer",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "left-ribbon",
+    "type": "split",
+    "children": [
+      {
+        "id": "file-explorer-pane",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "horizontal"
+  },
+  "right": {
+    "id": "right-ribbon",
+    "type": "split", 
+    "children": [],
+    "direction": "horizontal"
+  },
+  "active": "file-explorer",
+  "lastOpenFiles": []
+}
