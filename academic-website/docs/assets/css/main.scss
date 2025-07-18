@@ -389,11 +389,16 @@ tbody tr:nth-child(even) {
     .venue {
       font-style: italic;
       color: var(--secondary-text);
-      margin-bottom: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    
+    .abstract {
+      margin-bottom: var(--space-4);
     }
     
     .links {
       font-size: var(--font-size-sm);
+      margin-top: var(--space-4);
       
       a {
         margin-right: var(--space-4);

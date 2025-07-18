@@ -29,7 +29,7 @@ layout: default
     {% endif %}
     
     {% if page.doi or page.arxiv or page.pdf or page.code or page.website %}
-    <div class="card-meta links">
+    <div class="card-meta links" style="margin-top: 1.5rem;">
       {% if page.doi %}
       <a href="https://doi.org/{{ page.doi }}" target="_blank" rel="noopener">DOI</a>
       {% endif %}
