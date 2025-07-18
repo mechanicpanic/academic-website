@@ -45,7 +45,7 @@ TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR"
 
 # Download latest template
-if ! curl -L "https://github.com/mechanicpanic/academic-website/archive/main.zip" -o template.zip; then
+if ! curl -L "https://github.com/mechanicpanic/academic-website/archive/master.zip" -o template.zip; then
     echo -e "${RED}❌ Failed to download template${NC}"
     exit 1
 fi
@@ -56,7 +56,7 @@ if ! unzip -q template.zip; then
     exit 1
 fi
 
-cd academic-website-main
+cd academic-website-master
 
 # Go back to original directory
 cd "$OLDPWD"
@@ -84,10 +84,10 @@ done
 
 # Update design files
 for file in "${DESIGN_FILES[@]}"; do
-    if [ -e "$TEMP_DIR/academic-website-main/$file" ]; then
+    if [ -e "$TEMP_DIR/academic-website-master/$file" ]; then
         echo "  Updating $file"
         rm -rf "$file" 2>/dev/null || true
-        cp -r "$TEMP_DIR/academic-website-main/$file" "$file"
+        cp -r "$TEMP_DIR/academic-website-master/$file" "$file"
     fi
 done
 
