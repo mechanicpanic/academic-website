@@ -34,6 +34,7 @@ plugins:
   - jekyll-seo-tag
 
 # Collections configuration
+collections_dir: vault
 collections:
   publications:
     output: true
