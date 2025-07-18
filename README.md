@@ -67,6 +67,106 @@ academic-website/
 - [Obsidian](https://obsidian.md/) (for content management)
 - [Git](https://git-scm.com/)
 
+### Installing Ruby on macOS (Recommended Method)
+
+**⚠️ Important**: Don't use the system Ruby that comes with macOS! It can cause permission issues and path conflicts.
+
+#### Option 1: Homebrew (Simplest)
+
+1. **Install Homebrew** (if not already installed):
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+
+2. **Install Ruby via Homebrew**:
+   ```bash
+   brew install ruby
+   ```
+
+3. **Add Homebrew Ruby to your PATH**:
+   Add this to your `~/.zshrc` (or `~/.bash_profile` if using bash):
+   ```bash
+   export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+   export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+   export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+   export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+   ```
+
+4. **Reload your shell**:
+   ```bash
+   source ~/.zshrc
+   ```
+
+5. **Verify installation**:
+   ```bash
+   which ruby
+   # Should show: /opt/homebrew/opt/ruby/bin/ruby
+   ruby -v
+   # Should show: ruby 3.x.x
+   ```
+
+#### Option 2: rbenv (Most Flexible)
+
+1. **Install rbenv via Homebrew**:
+   ```bash
+   brew install rbenv ruby-build
+   ```
+
+2. **Initialize rbenv**:
+   ```bash
+   rbenv init
+   ```
+
+3. **Add rbenv to your shell** (add to `~/.zshrc`):
+   ```bash
+   eval "$(rbenv init - zsh)"
+   ```
+
+4. **Install and set Ruby version**:
+   ```bash
+   rbenv install 3.2.0
+   rbenv global 3.2.0
+   ```
+
+5. **Verify installation**:
+   ```bash
+   which ruby
+   # Should show: /Users/yourusername/.rbenv/shims/ruby
+   ruby -v
+   # Should show: ruby 3.2.0
+   ```
+
+#### Installing Bundler
+
+After installing Ruby with either method:
+```bash
+gem install bundler
+```
+
+#### Troubleshooting Ruby Installation
+
+**If you see permission errors**:
+- ❌ **Don't use `sudo`** with gem commands
+- ✅ **Use Homebrew or rbenv** as described above
+
+**If `bundle install` fails**:
+```bash
+# Set bundle to install gems locally
+bundle config set --local path 'vendor/bundle'
+bundle install
+```
+
+**Check your Ruby setup**:
+```bash
+# Verify you're not using system Ruby
+which ruby
+# Should NOT show: /usr/bin/ruby
+
+# Check gem environment
+gem env
+# Look for paths under /opt/homebrew or ~/.rbenv
+```
+
 ### Local Development
 
 1. **Clone the repository**
