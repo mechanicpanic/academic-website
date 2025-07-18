@@ -29,14 +29,14 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
           cache-version: 0
-          working-directory: docs/
+          working-directory: academic-website/docs/
           
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
         
       - name: Build with Jekyll
-        working-directory: docs/
+        working-directory: academic-website/docs/
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
@@ -44,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: docs/_site/
+          path: academic-website/docs/_site/
 
   deploy:
     environment:
