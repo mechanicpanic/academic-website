@@ -13,6 +13,9 @@ title: "Your Name"                    # ← Your full name
 subtitle: "Your Position"             # ← Your academic title/position  
 email: your.email@university.edu      # ← Your email address
 
+# Profile photo (add your photo to assets/images/ and update this path)
+profile_photo: "/assets/images/your-photo.jpg"  # ← Path to your photo
+
 # Social/Academic Profiles
 github_username: your_username        # ← Your GitHub username
 orcid: 0000-0000-0000-0000           # ← Your ORCID ID

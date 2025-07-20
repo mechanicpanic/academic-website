@@ -4,6 +4,9 @@
 title: "Dr. Academic Name"
 subtitle: "Professor of Computer Science"
 email: academic@university.edu
+
+# Profile photo (add your photo to assets/images/ and update this path)
+profile_photo: "/assets/images/profile-photo.svg"
 description: >-
   Academic website featuring research publications, CV, and professional activities.
   Built with Jekyll and managed through Obsidian for seamless content creation.

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="150" cy="150" r="150" fill="#f7fafc" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Person silhouette -->
+  <g fill="#cbd5e0">
+    <!-- Head -->
+    <circle cx="150" cy="110" r="35"/>
+    
+    <!-- Body -->
+    <path d="M150 150 
+             C 120 150, 100 170, 100 200
+             L 100 260
+             C 100 270, 110 280, 120 280
+             L 180 280
+             C 190 280, 200 270, 200 260
+             L 200 200
+             C 200 170, 180 150, 150 150 Z"/>
+  </g>
+  
+  <!-- Placeholder text -->
+  <text x="150" y="50" text-anchor="middle" font-family="Computer Modern Serif, serif" font-size="16" fill="#718096">
+    Add Your Photo
+  </text>
+  <text x="150" y="250" text-anchor="middle" font-family="Computer Modern Serif, serif" font-size="12" fill="#a0aec0">
+    Replace in assets/images/
+  </text>
+</svg>
