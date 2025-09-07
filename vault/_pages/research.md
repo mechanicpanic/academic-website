@@ -80,14 +80,14 @@ Advancing our understanding of learning algorithms through:
 
 ### Selected Recent Work
 
-{% assign featured_publications = site.publications | where: "featured", true | sort: "date" | reverse | limit: 3 %}
+{% assign featured_publications = site.publications | where: "featured", true | sort: "date" | reverse | slice: 0, 3 %}
 {% if featured_publications.size > 0 %}
 {% for publication in featured_publications %}
 - **[{{ publication.title }}]({{ publication.url | relative_url }})** ({{ publication.year }})  
   *{{ publication.venue }}*
 {% endfor %}
 {% else %}
-{% assign recent_pubs = site.publications | sort: "date" | reverse | limit: 3 %}
+{% assign recent_pubs = site.publications | sort: "date" | reverse | slice: 0, 3 %}
 {% for publication in recent_pubs %}
 - **[{{ publication.title }}]({{ publication.url | relative_url }})** ({{ publication.year }})  
   *{{ publication.venue }}*

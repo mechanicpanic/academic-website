@@ -8,7 +8,7 @@
 // Import Computer Modern fonts
 @import url('https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css');
 
-// Color Variables - Muted Academic Palette
+// Color Variables - Light Theme (Default)
 :root {
   --primary-text: #2d3748;      // Dark gray-blue
   --secondary-text: #4a5568;    // Medium gray
@@ -49,6 +49,50 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+// Dark Theme
+[data-theme="dark"] {
+  --primary-text: #e2e8f0;      // Light gray
+  --secondary-text: #cbd5e0;    // Medium light gray
+  --tertiary-text: #a0aec0;     // Muted light gray
+  --accent-color: #9f7aea;      // Light purple
+  --accent-hover: #b794f4;      // Lighter purple
+  --background: #1a202c;        // Dark background
+  --surface: #2d3748;          // Dark surface
+  --surface-hover: #4a5568;    // Dark hover
+  --border: #4a5568;           // Dark border
+  --subtle: #2d3748;           // Dark subtle
+  --danger: #fc8181;           // Light red
+  --success: #68d391;          // Light green
+  
+  // Dark mode shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+}
+
+// Font size adjustments
+[data-font-size="small"] {
+  --font-size-xs: 0.625rem;     // 10px
+  --font-size-sm: 0.75rem;      // 12px
+  --font-size-base: 0.875rem;   // 14px
+  --font-size-lg: 1rem;          // 16px
+  --font-size-xl: 1.125rem;     // 18px
+  --font-size-2xl: 1.25rem;     // 20px
+  --font-size-3xl: 1.5rem;      // 24px
+  --font-size-4xl: 1.875rem;    // 30px
+}
+
+[data-font-size="large"] {
+  --font-size-xs: 0.875rem;     // 14px
+  --font-size-sm: 1rem;          // 16px
+  --font-size-base: 1.125rem;   // 18px
+  --font-size-lg: 1.25rem;      // 20px
+  --font-size-xl: 1.5rem;       // 24px
+  --font-size-2xl: 1.875rem;    // 30px
+  --font-size-3xl: 2.25rem;     // 36px
+  --font-size-4xl: 3rem;        // 48px
 }
 
 // Base Typography
@@ -571,6 +615,73 @@ mjx-container[display="true"] {
 .publication-item mjx-container,
 .card mjx-container {
   color: inherit;
+}
+
+// Theme Controls
+.theme-controls {
+  position: fixed;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  z-index: 1000;
+  
+  button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--surface);
+    border: 2px solid var(--border);
+    color: var(--primary-text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+    
+    &:hover {
+      background-color: var(--surface-hover);
+      border-color: var(--accent-color);
+      transform: scale(1.1);
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+  
+  .font-size-control {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    
+    button {
+      width: 36px;
+      height: 36px;
+      font-size: var(--font-size-base);
+      font-weight: bold;
+    }
+  }
+}
+
+// Smooth transitions for theme changes
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header,
+.navigation,
+.footer,
+.card,
+.surface,
+code,
+pre,
+table th,
+tbody tr:nth-child(even) {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 // Print Styles

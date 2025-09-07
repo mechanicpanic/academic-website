@@ -58,36 +58,48 @@ your-academic-website/              # Your repository from template
 │   ├── experience.html           # Experience detail page
 │   ├── talk.html                 # Talk detail page
 │   └── teaching.html             # Teaching detail page
-├── assets/css/main.scss          # 🎨 Styles (customize colors here)
+├── _plugins/                     # 🔧 Jekyll plugins (Obsidian links, etc.)
+├── assets/                       # 🎨 DESIGN ASSETS ONLY
+│   ├── css/main.scss            # Styles (customize colors here)
+│   └── images/                  # Design images (favicon, etc.)
 ├── Gemfile                       # Ruby dependencies
 ├── vault/                        # 📝 YOUR CONTENT - All yours!
-│   ├── _pages/                   # Website pages
-│   │   ├── index.md             # 📝 Homepage - Write your bio here
-│   │   ├── cv.md                # 📝 Your CV page
-│   │   ├── publications.md       # Publications listing page
-│   │   ├── research.md          # Research overview page
-│   │   ├── teaching.md          # Teaching portfolio page
-│   │   ├── talks.md             # Talks & presentations page
-│   │   └── contact.md           # Contact information page
-│   ├── _publications/           # 📝 Add your papers here
-│   ├── _experience/             # 📝 Add your work experience
-│   ├── _education/              # 📝 Add your degrees
-│   ├── _talks/                  # 📝 Add your presentations
-│   ├── _teaching/               # 📝 Add your courses
-│   └── .obsidian/               # Obsidian configuration
-│       └── templates/           # Content creation templates
-├── .github/workflows/jekyll.yml  # 🔧 Automated deployment
-├── update-design.sh             # 🔄 Design update script
-├── USER_CONFIG.md               # 📚 Your customization guide
-└── README.md                    # This documentation
+│   ├── assets/                  # 📁 YOUR FILES - Managed in Obsidian
+│   │   ├── pdfs/               # 📄 Your PDF files
+│   │   ├── images/             # 🖼️ Your images & photos
+│   │   └── slides/             # 📊 Your presentation slides
+│   ├── _pages/                  # Website pages
+│   │   ├── index.md            # 📝 Homepage - Write your bio here
+│   │   ├── cv.md               # 📝 Your CV page
+│   │   ├── publications.md      # Publications listing page
+│   │   ├── research.md         # Research overview page
+│   │   ├── teaching.md         # Teaching portfolio page
+│   │   ├── talks.md            # Talks & presentations page
+│   │   └── contact.md          # Contact information page
+│   ├── _publications/          # 📝 Add your papers here
+│   ├── _experience/            # 📝 Add your work experience
+│   ├── _education/             # 📝 Add your degrees
+│   ├── _talks/                 # 📝 Add your presentations
+│   ├── _teaching/              # 📝 Add your courses
+│   └── .obsidian/              # Obsidian configuration
+│       └── templates/          # Content creation templates
+├── .github/workflows/jekyll.yml # 🔧 Automated deployment
+├── update-design.sh            # 🔄 Design update script
+├── USER_CONFIG.md              # 📚 Your customization guide
+└── README.md                   # This documentation
 ```
 
 **Legend:**
-- 📝 **YOUR CONTENT** - Edit freely, these are your files
+- 📝 **YOUR CONTENT** - Edit freely, these are your files in `vault/`
+- 📁 **YOUR FILES** - PDFs, images, slides managed in Obsidian (`vault/assets/`)
 - 🎯 **YOUR SETTINGS** - Customize for your site
-- 🎨 **STYLE CUSTOMIZATION** - Safe to modify colors/fonts
+- 🎨 **DESIGN ASSETS** - CSS and design images (stay in `assets/`)
 - 🔧 **TEMPLATE FILES** - Updated via `update-design.sh`
 - 🔄 **UPDATE TOOLS** - Keep your design current
+
+**Key Separation:**
+- `vault/assets/` - Your content files (PDFs, images, slides) - managed in Obsidian
+- `assets/` - Design files (CSS, favicon) - not in Obsidian
 
 ## 🎯 Getting Started
 
@@ -241,6 +253,21 @@ gem env
 
 **💡 Pro tip**: All your content lives in the `vault/` directory, making it easy to manage everything through Obsidian while keeping design updates separate!
 
+#### Obsidian Wikilinks Support
+
+This template fully supports Obsidian-style wikilinks:
+
+- ✅ **Basic links**: `[[Page Name]]` → links to page
+- ✅ **Custom text**: `[[Page Name|Display Text]]` → shows "Display Text"
+- ✅ **Works with all content**: pages, publications, talks, etc.
+- ✅ **Works locally**: Full support with `jekyll serve` and in production
+
+Example:
+```markdown
+Check out my [[Publications]] or read about my [[Research|research interests]].
+See my recent talk on [[The Future of AI: Scalable and Sustainable Machine Learning|sustainable AI]].
+```
+
 ## 📝 Content Creation Workflow
 
 ### Adding a New Publication
@@ -267,12 +294,36 @@ gem env
      - "keyword2"
    doi: "10.1000/123456"
    arxiv: "2401.12345"
-   pdf: "/assets/pdfs/paper.pdf"
+   pdf: "/vault/assets/pdfs/paper.pdf"
    code: "https://github.com/user/repo"
    ---
    ```
 4. Save in `vault/_publications/` directory
-5. Jekyll automatically rebuilds the site
+5. Add PDF to `vault/assets/pdfs/` if you have one
+6. Jekyll automatically rebuilds the site
+
+### Managing Files in Obsidian
+
+All your content files are in the `vault/` directory, making them accessible in Obsidian:
+
+#### Adding PDFs
+1. Copy your PDF to `vault/assets/pdfs/`
+2. Reference it in your markdown: `pdf: "/vault/assets/pdfs/filename.pdf"`
+
+#### Adding Images
+1. Copy images to `vault/assets/images/`
+2. Use in markdown: `![Description](/vault/assets/images/photo.jpg)`
+3. For profile photo: Update path in `_config.yml`
+
+#### Adding Slides
+1. Copy presentation files to `vault/assets/slides/`
+2. Link in talks: `slides: "/vault/assets/slides/presentation.pdf"`
+
+**Note**: All files in `vault/assets/` are:
+- ✅ Visible and manageable in Obsidian
+- ✅ Automatically served by Jekyll at `/vault/assets/...`
+- ✅ Preserved during design updates
+- ✅ Part of your content, not the template
 
 ### Updating Site Configuration
 
@@ -315,8 +366,14 @@ Edit `academic-website/docs/assets/css/main.scss`:
 The site automatically deploys to GitHub Pages via GitHub Actions:
 
 1. **Push changes** to the `master` branch
-2. **GitHub Actions** builds the Jekyll site
+2. **GitHub Actions** builds the Jekyll site with custom plugins enabled
 3. **Deploys** to `https://yourusername.github.io/academic-website/`
+
+**Important**: The GitHub Actions workflow enables custom Jekyll plugins, which means:
+- ✅ Obsidian wikilinks (`[[Page Name]]`) work automatically
+- ✅ LaTeX math rendering with MathJax
+- ✅ All custom features are supported
+- ✅ No manual build required
 
 ### Manual Deployment
 
@@ -328,9 +385,22 @@ bundle exec jekyll build
 
 ## 🔧 Advanced Features
 
+### How Obsidian Wikilinks Work
+
+The template includes a custom Jekyll plugin (`_plugins/obsidian_wikilinks.rb`) that:
+1. Scans all markdown files for `[[wikilink]]` patterns
+2. Converts them to proper markdown links before Jekyll processes them
+3. Automatically finds the correct URL for each linked page
+
+**Features**:
+- Works both locally (`jekyll serve`) and in production (GitHub Actions)
+- No setup needed - plugin is included and ready to use
+- Automatically resolves page titles to URLs
+- Supports all content types: pages, publications, talks, etc.
+
 ### Custom Domain Setup
 
-1. Add `CNAME` file to `academic-website/docs/`:
+1. Add `CNAME` file to root directory:
    ```
    yourdomain.com
    ```

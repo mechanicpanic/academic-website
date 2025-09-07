@@ -5,8 +5,8 @@ title: "Dr. Academic Name"
 subtitle: "Professor of Computer Science"
 email: academic@university.edu
 
-# Profile photo (add your photo to assets/images/ and update this path)
-profile_photo: "/assets/images/profile-photo.svg"
+# Profile photo (add your photo to vault/assets/images/ and update this path)
+profile_photo: "/vault/assets/images/profile-photo.svg"
 description: >-
   Academic website featuring research publications, CV, and professional activities.
   Built with Jekyll and managed through Obsidian for seamless content creation.
@@ -35,6 +35,9 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+# Enable custom plugins
+plugins_dir: _plugins
 
 # Collections configuration
 collections_dir: vault
@@ -113,6 +116,10 @@ sass:
   sass_dir: _sass
   style: compressed
 
+# Include vault assets to be served
+include:
+  - vault/assets
+
 # Exclude from processing
 exclude:
   - Gemfile
@@ -123,14 +130,14 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
-  - .obsidian/
+  - vault/.obsidian/  # Exclude Obsidian config but include vault/assets
 
 # Academic-specific settings
 academic:
   show_publications_on_home: true
   publications_limit: 5
   show_recent_talks: true
-  cv_pdf_path: "/assets/pdfs/cv.pdf"
+  cv_pdf_path: "/vault/assets/pdfs/cv.pdf"
   research_interests:
     - "Artificial Intelligence"
     - "Machine Learning"

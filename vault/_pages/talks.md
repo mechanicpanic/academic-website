@@ -73,7 +73,7 @@ I regularly present my research at conferences, workshops, and invited seminars.
 {% endif %}
 
 ### Invited Seminars
-{% assign invited_talks = site.talks | where: "type", "invited" | sort: "date" | reverse | limit: 5 %}
+{% assign invited_talks = site.talks | where: "type", "invited" | sort: "date" | reverse | slice: 0, 5 %}
 {% if invited_talks.size > 0 %}
 {% for talk in invited_talks %}
 - **{{ talk.title }}** - *{{ talk.venue }}* ({{ talk.date | date: "%Y" }})
@@ -86,7 +86,7 @@ I regularly present my research at conferences, workshops, and invited seminars.
 {% endif %}
 
 ### Conference Presentations
-{% assign conference_talks = site.talks | where: "type", "contributed" | sort: "date" | reverse | limit: 5 %}
+{% assign conference_talks = site.talks | where: "type", "contributed" | sort: "date" | reverse | slice: 0, 5 %}
 {% if conference_talks.size > 0 %}
 {% for talk in conference_talks %}
 - **{{ talk.title }}** - *{{ talk.venue }}* ({{ talk.date | date: "%Y" }})

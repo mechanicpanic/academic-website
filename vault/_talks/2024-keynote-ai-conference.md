@@ -7,7 +7,7 @@ location: "San Francisco, CA"
 type: "keynote"
 duration: "45 minutes"
 audience_size: "1200"
-slides: "/assets/slides/ai-conference-2024-keynote.pdf"
+slides: "/vault/assets/slides/ai-conference-2024-keynote.pdf"
 video: "https://youtube.com/watch?v=example"
 abstract: |
   This keynote explores the intersection of scalability and sustainability in modern AI systems. We discuss emerging optimization techniques, energy-efficient model architectures, and the future direction of machine learning research in the context of growing computational demands.
@@ -34,7 +34,7 @@ As artificial intelligence becomes increasingly pervasive, the challenge of deve
 
 ## Materials
 
-- [Keynote Slides](/assets/slides/ai-conference-2024-keynote.pdf)
+- [Keynote Slides](/vault/assets/slides/ai-conference-2024-keynote.pdf)
 - [Video Recording](https://youtube.com/watch?v=example)
 
 ## Feedback
