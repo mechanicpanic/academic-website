@@ -5,6 +5,16 @@ All notable changes to the Academic Website Template will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2025-09-30
+
+### Added
+- **Frontmatter Wikilinks Support**: Wikilinks now work in YAML frontmatter fields (slides, pdf, video, etc.)
+- **Ruby 3.4+ Compatibility**: Added `bigdecimal` gem for newer Ruby versions
+
+### Fixed
+- Wikilink conversion in frontmatter fields like `slides: [[../assets/file.pdf]]`
+- Build errors on Ruby 3.4+ due to missing standard library gems
+
 ## [2.0.0] - 2024-09-07
 
 ### Added
