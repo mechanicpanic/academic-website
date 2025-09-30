@@ -8,22 +8,25 @@ module Jekyll
       site.pages.each do |page|
         if page.ext == ".md"
           page.content = process_wikilinks(page.content, site)
+          process_frontmatter_wikilinks(page)
         end
       end
-      
+
       # Process all documents in collections
       site.collections.each do |name, collection|
         collection.docs.each do |doc|
           if doc.extname == ".md"
             doc.content = process_wikilinks(doc.content, site)
+            process_frontmatter_wikilinks(doc)
           end
         end
       end
-      
+
       # Process posts if they exist
       if site.posts
         site.posts.docs.each do |post|
           post.content = process_wikilinks(post.content, site)
+          process_frontmatter_wikilinks(post)
         end
       end
     end
@@ -90,6 +93,37 @@ module Jekyll
       else
         # Default: convert to URL-friendly format
         "/#{slug}/"
+      end
+    end
+
+    def process_frontmatter_wikilinks(page)
+      # Fields that commonly contain file or page links
+      link_fields = ['slides', 'pdf', 'video', 'code', 'website', 'image', 'photo', 'file']
+
+      link_fields.each do |field|
+        if page.data[field].is_a?(String) && page.data[field].include?('[[')
+          page.data[field] = page.data[field].gsub(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/) do |match|
+            link_path = $1.strip
+
+            # Handle relative paths from Obsidian (like ../assets/slides/file.pdf)
+            if link_path.match?(/\.(pdf|png|jpg|jpeg|gif|svg|mp4|pptx?|docx?|zip)$/i)
+              # It's a file link - convert to absolute path
+              if link_path.start_with?('../')
+                # Remove ../ and assume it's relative to vault root
+                link_path = link_path.sub('../', '/vault/')
+              elsif link_path.start_with?('/')
+                # Already absolute
+                link_path
+              else
+                # Assume it's in vault/assets/
+                "/vault/assets/#{link_path}"
+              end
+            else
+              # It's a page link - just remove the wikilink syntax
+              link_path
+            end
+          end
+        end
       end
     end
   end
