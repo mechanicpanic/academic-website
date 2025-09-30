@@ -269,16 +269,18 @@ if [ "$NEEDS_MIGRATION" = true ]; then
     fi
 
     # Fix paths in layouts if needed
-    for layout in _layouts/*.html 2>/dev/null; do
-        if [ -f "$layout" ] && grep -q "/vault/assets" "$layout" 2>/dev/null; then
-            echo "  Updating paths in: $layout"
-            if [[ "$OSTYPE" == "darwin"* ]]; then
-                sed -i '' 's|/vault/assets|/assets|g' "$layout"
-            else
-                sed -i 's|/vault/assets|/assets|g' "$layout"
+    if [ -d "_layouts" ]; then
+        for layout in _layouts/*.html; do
+            if [ -f "$layout" ] && grep -q "/vault/assets" "$layout" 2>/dev/null; then
+                echo "  Updating paths in: $layout"
+                if [[ "$OSTYPE" == "darwin"* ]]; then
+                    sed -i '' 's|/vault/assets|/assets|g' "$layout"
+                else
+                    sed -i 's|/vault/assets|/assets|g' "$layout"
+                fi
             fi
-        fi
-    done
+        done
+    fi
 
     echo -e "${GREEN}✅ Migration completed!${NC}"
     echo ""
