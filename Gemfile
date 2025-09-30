@@ -7,6 +7,7 @@ gem "jekyll", "~> 4.3.0"
 gem "csv"
 gem "logger"
 gem "base64"
+gem "bigdecimal"
 
 # Plugins
 group :jekyll_plugins do
