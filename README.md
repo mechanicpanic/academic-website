@@ -34,8 +34,9 @@ A professional academic website built with Jekyll and optimized for seamless Obs
 2. Enable GitHub Pages in repository Settings → Pages
 3. Your site will be live at `https://your-username.github.io/your-repo-name/`
 
-### 4. Keep Design Updated
-- Run `./update-design.sh` to get latest template improvements
+### 4. Keep Design Updated (Optional)
+- **Manual**: Run `./update-design.sh` to get latest template improvements
+- **Automatic**: Enable weekly update checks (see [Automatic Updates](#automatic-template-updates))
 - Your content stays safe, only design files update
 
 ## 🏗️ Architecture
@@ -381,6 +382,128 @@ The site automatically deploys to GitHub Pages via GitHub Actions:
 cd academic-website/docs
 bundle exec jekyll build
 # Upload _site/ directory to your web server
+```
+
+## 🔄 Keeping the Template Updated
+
+The template receives regular updates with new features, bug fixes, and improvements. You can stay current in two ways:
+
+### Manual Updates
+
+Run the update script whenever you want:
+
+```bash
+./update-design.sh
+```
+
+**What it does:**
+- ✅ Checks your current version vs latest
+- ✅ Shows changelog of what's new
+- ✅ Detects if you've customized design files
+- ✅ Updates only template files, preserves your content
+- ✅ Creates timestamped backup
+- ✅ Migrates old structures automatically
+
+**Options:**
+```bash
+./update-design.sh --help             # Show all options
+./update-design.sh --check-only       # Just check, don't update
+./update-design.sh --force            # Force update
+```
+
+### Automatic Template Updates
+
+**Recommended for hassle-free maintenance!**
+
+The template includes a GitHub Actions workflow that can automatically check for updates and create PRs.
+
+#### Enable Automatic Updates
+
+1. **Edit `.github/workflows/template-update.yml`**
+2. **Uncomment the schedule trigger:**
+   ```yaml
+   schedule:
+     - cron: '0 0 * * 0'  # Weekly on Sunday
+   ```
+3. **Commit and push**
+
+That's it! The workflow will now:
+- ✅ Check weekly for template updates
+- ✅ Create a PR when updates are available
+- ✅ Show changelog and what changed
+- ✅ Auto-merge if safe (no conflicts)
+- ✅ Request review if you've customized design files
+
+#### How It Works
+
+**When you haven't customized design files:**
+- PR is created automatically
+- Auto-merge is enabled
+- PR merges itself after checks pass
+- Your site is updated seamlessly
+
+**When you have customized design files:**
+- PR is created for your review
+- Shows which files conflict
+- Auto-merge is disabled
+- You review and merge when ready
+
+#### Manual Trigger
+
+You can also trigger updates manually:
+1. Go to **Actions** tab in your repository
+2. Select **Check for Template Updates**
+3. Click **Run workflow**
+4. Optionally enable "Force update"
+
+### Version Information
+
+Check your current version:
+```bash
+cat VERSION
+```
+
+View changelog:
+```bash
+cat CHANGELOG.md
+```
+
+Or visit the [template repository](https://github.com/mechanicpanic/academic-website) for the latest changes.
+
+### What Gets Updated
+
+**Updated files** (design/template):
+- `_layouts/` - HTML templates
+- `_plugins/` - Jekyll plugins
+- `assets/css/` - Stylesheets
+- `.github/workflows/` - GitHub Actions
+- `update-design.sh` - Update script itself
+- `VERSION` and `CHANGELOG.md`
+
+**Preserved files** (your content):
+- `vault/` - All your content and files
+- `_config.yml` - Your configuration
+- `Gemfile.lock` - Your dependencies
+- All backups in `.design-backup/`
+
+### Conflict Resolution
+
+If you've customized design files and an update conflicts:
+
+1. **Review the PR** - See what changed in the template
+2. **Test locally** - Checkout the branch and test:
+   ```bash
+   git fetch
+   git checkout template-update-XXXXXXXX
+   bundle exec jekyll serve
+   ```
+3. **Merge conflicts** - Resolve any conflicts manually
+4. **Merge the PR** - Once satisfied, merge it
+
+The update script creates backups, so you can always revert:
+```bash
+# Revert to backup
+cp -r .design-backup/YYYYMMDD_HHMMSS/* .
 ```
 
 ## 🔧 Advanced Features
