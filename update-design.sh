@@ -371,9 +371,18 @@ for file in "${DESIGN_FILES[@]}"; do
     if [ -e "$TEMP_DIR/academic-website-master/$file" ]; then
         echo "  Updating $file"
         mkdir -p "$(dirname "$file")" 2>/dev/null || true
+
+        # Fix permissions before deleting (macOS can have locked files)
+        if [ -e "$file" ]; then
+            chmod -R u+w "$file" 2>/dev/null || true
+        fi
+
         rm -rf "$file" 2>/dev/null || true
         cp -rf "$TEMP_DIR/academic-website-master/$file" "$file"
+
         if [ -e "$file" ]; then
+            # Ensure new files are writable
+            chmod -R u+w "$file" 2>/dev/null || true
             UPDATED_FILES+=("$file")
         else
             echo -e "${YELLOW}    ⚠️  Warning: Failed to copy $file${NC}"
@@ -392,6 +401,7 @@ for file in "${NEW_OPTIONAL_FILES[@]}"; do
         echo "  Adding new file: $file"
         cp -f "$TEMP_DIR/academic-website-master/$file" "$file"
         if [ -e "$file" ]; then
+            chmod u+w "$file" 2>/dev/null || true
             UPDATED_FILES+=("$file")
         fi
     fi
