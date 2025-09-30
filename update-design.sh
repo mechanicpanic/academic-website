@@ -142,7 +142,7 @@ elif version_greater_than "$REMOTE_VERSION" "$LOCAL_VERSION"; then
     echo -e "${BLUE}🆕 New version available!${NC}"
 
     # Try to get changelog
-    CHANGELOG=$(curl -s "https://raw.githubusercontent.com/mechanicpanic/academic-website/master/CHANGELOG.md" | sed -n "/## \[$REMOTE_VERSION\]/,/## \[/p" | head -n -1)
+    CHANGELOG=$(curl -s "https://raw.githubusercontent.com/mechanicpanic/academic-website/master/CHANGELOG.md" | sed -n "/## \[$REMOTE_VERSION\]/,/## \[/p" | sed '$d')
     if [ -n "$CHANGELOG" ]; then
         echo ""
         echo -e "${YELLOW}What's new:${NC}"
