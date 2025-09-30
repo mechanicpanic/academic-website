@@ -5,6 +5,11 @@ All notable changes to the Academic Website Template will be documented in this 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.6] - 2025-09-30
+
+### Fixed
+- **Wikilinks Plugin**: File links in content now correctly convert to paths instead of being treated as page slugs (e.g., `[[../assets/file.pdf]]` now properly becomes `/vault/assets/file.pdf`)
+
 ## [2.0.5] - 2025-09-30
 
 ### Fixed

@@ -38,10 +38,25 @@ module Jekyll
       content.gsub(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/) do |match|
         link_text = $1.strip
         display_text = $2&.strip || link_text
-        
-        # Try to find the page URL
-        url = find_page_url(link_text, site)
-        
+
+        # Check if it's a file link (has file extension)
+        if link_text.match?(/\.(pdf|png|jpg|jpeg|gif|svg|mp4|pptx?|docx?|zip)$/i)
+          # It's a file link - convert path
+          url = if link_text.start_with?('../')
+            # Remove ../ and assume it's relative to vault root
+            link_text.sub('../', '/vault/')
+          elsif link_text.start_with?('/')
+            # Already absolute
+            link_text
+          else
+            # Assume it's in vault/assets/
+            "/vault/assets/#{link_text}"
+          end
+        else
+          # It's a page link - find the page URL
+          url = find_page_url(link_text, site)
+        end
+
         # Return as markdown link
         "[#{display_text}](#{url})"
       end
