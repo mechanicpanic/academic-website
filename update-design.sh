@@ -324,6 +324,7 @@ DESIGN_FILES=(
     ".github/workflows"
     "update-design.sh"
     "_plugins"
+    "Gemfile"
     "VERSION"
     "CHANGELOG.md"
 )
