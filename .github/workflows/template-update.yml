@@ -69,10 +69,16 @@ jobs:
           git checkout -b "$BRANCH_NAME"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
+      - name: Download latest update script
+        run: |
+          echo "📥 Downloading latest update script from template..."
+          curl -f -L -o update-design.sh.new https://raw.githubusercontent.com/mechanicpanic/academic-website/master/update-design.sh
+          mv update-design.sh.new update-design.sh
+          chmod +x update-design.sh
+
       - name: Run update script
         id: update
         run: |
-          chmod +x update-design.sh
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             ./update-design.sh --non-interactive --force
           else
