@@ -292,16 +292,25 @@ echo -e "${BLUE}📦 Downloading latest template...${NC}"
 TEMP_DIR=$(mktemp -d)
 cd "$TEMP_DIR"
 
-# Download latest template
-if ! curl -L "$TEMPLATE_URL/archive/master.zip" -o template.zip 2>/dev/null; then
+# Download latest template (remove first in case curl is weird)
+rm -f template.zip 2>/dev/null || true
+if ! curl -f -L "$TEMPLATE_URL/archive/master.zip" -o template.zip 2>/dev/null; then
     echo -e "${RED}❌ Failed to download template${NC}"
     cd "$OLDPWD"
     rm -rf "$TEMP_DIR"
     exit 1
 fi
 
-# Extract template
-if ! unzip -q template.zip 2>/dev/null; then
+# Verify download
+if [ ! -f template.zip ] || [ ! -s template.zip ]; then
+    echo -e "${RED}❌ Downloaded file is missing or empty${NC}"
+    cd "$OLDPWD"
+    rm -rf "$TEMP_DIR"
+    exit 1
+fi
+
+# Extract template (force overwrite)
+if ! unzip -o -q template.zip 2>/dev/null; then
     echo -e "${RED}❌ Failed to extract template${NC}"
     cd "$OLDPWD"
     rm -rf "$TEMP_DIR"
@@ -363,8 +372,12 @@ for file in "${DESIGN_FILES[@]}"; do
         echo "  Updating $file"
         mkdir -p "$(dirname "$file")" 2>/dev/null || true
         rm -rf "$file" 2>/dev/null || true
-        cp -r "$TEMP_DIR/academic-website-master/$file" "$file"
-        UPDATED_FILES+=("$file")
+        cp -rf "$TEMP_DIR/academic-website-master/$file" "$file"
+        if [ -e "$file" ]; then
+            UPDATED_FILES+=("$file")
+        else
+            echo -e "${YELLOW}    ⚠️  Warning: Failed to copy $file${NC}"
+        fi
     fi
 done
 
@@ -377,8 +390,10 @@ NEW_OPTIONAL_FILES=(
 for file in "${NEW_OPTIONAL_FILES[@]}"; do
     if [ ! -e "$file" ] && [ -e "$TEMP_DIR/academic-website-master/$file" ]; then
         echo "  Adding new file: $file"
-        cp "$TEMP_DIR/academic-website-master/$file" "$file"
-        UPDATED_FILES+=("$file")
+        cp -f "$TEMP_DIR/academic-website-master/$file" "$file"
+        if [ -e "$file" ]; then
+            UPDATED_FILES+=("$file")
+        fi
     fi
 done
 
